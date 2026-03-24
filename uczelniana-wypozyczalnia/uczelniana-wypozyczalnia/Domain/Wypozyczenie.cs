@@ -28,11 +28,18 @@ public class Wypozyczenie
         return aktywne;
     }
 
-    public bool overdue()
+    public int zwrot()
     {
-        if (wypozyczenie_limit < data_wypozyczenia)
-            return true;
-        
-        return false;
+        data_oddania = DateTime.Now;
+        int do_zaplacenia = kara();
+        return do_zaplacenia;
+    }
+
+    public int kara()
+    {
+        if (data_oddania > wypozyczenie_limit)
+            return ((data_oddania - wypozyczenie_limit).Days * 100);
+
+        return 0;
     }
 }
