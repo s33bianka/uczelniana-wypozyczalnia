@@ -4,14 +4,13 @@ namespace uczelniana_wypozyczalnia.Domain.User;
 
 public class Client : Uzytkownik
 {
-    public int ilosc_wypozyczonych;
     private List<Sprzet> wypozyczone;
 
-    public Client() : base()
+    public Client(string imie, string nazwisko) : base(imie, nazwisko)
     {
         wypozyczone = new List<Sprzet>();
-        this.rodzaj_u = "client";
-        ilosc_wypozyczonych = 0;
+        rodzaj_u = "client";
+        max_wypozyczen = 2;
     }
 
     public void wypozycz_sprzet(Sprzet sprzet)
