@@ -5,7 +5,7 @@ public abstract class Sprzet
     public static int ilosc = 0;
     
     public int ID;
-    public String type;
+    public string type;
     public bool available;
 
     public Sprzet()
