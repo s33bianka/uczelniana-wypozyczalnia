@@ -3,7 +3,7 @@ using uczelniana_wypozyczalnia.Domain.User;
 
 namespace uczelniana_wypozyczalnia.Service;
 
-public class Wypozyczenie
+public class Wypozyczalnia
 {
     private List<Sprzet> lista_sprzety = new();
     private List<Uzytkownik> lista_uzytkownicy = new();
@@ -45,8 +45,28 @@ public class Wypozyczenie
     
     
     // wypozyczenia ---------------------------------------------------------------
-    public void wypozycz(int id_u, int id_s, int liczba_dni, DateTime? teraz = null)
+    public bool wypozycz(int id_u, int id_s, int liczba_dni, DateTime? teraz = null)
     {
         var uz = lista_uzytkownicy.FirstOrDefault(u => u.ID == id_u);
+        if (uz == null) 
+        {
+            Console.WriteLine("nie znaleziono uzytkownika");
+            return false;
+        }
+
+        var sprze = lista_sprzety.FirstOrDefault(s => s.ID == id_s);
+        if (sprze == null)
+        {
+            Console.WriteLine("nie znaleziono sprzetu");
+            return false;
+        }
+
+        if (!sprze.available)
+        {
+            Console.WriteLine("sprzęt niedostępny");
+            return false;
+        }
+        
+        int ile_wypo = lista_wypozyczenia.Count(w => w.Uzytkownik.ID == id_u)
     }
 }
