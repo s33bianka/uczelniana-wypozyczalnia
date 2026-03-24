@@ -6,7 +6,7 @@ public class Projector : Sprzet
 
     public Projector(bool color)
     {
-        this.type = "Camera";
+        this.type = "Projector";
         this.color = color;
     }
 }
