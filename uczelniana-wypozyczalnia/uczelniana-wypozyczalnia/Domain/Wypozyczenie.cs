@@ -13,6 +13,7 @@ public class Wypozyczenie
     private DateTime data_wypozyczenia;
     private DateTime wypozyczenie_limit;
     private DateTime data_oddania;
+    private bool overdue;
 
     public Wypozyczenie(Uzytkownik u, Employee e, DateTime limit)
     {
@@ -21,6 +22,7 @@ public class Wypozyczenie
         this.aktywne = true;
         this.data_wypozyczenia = DateTime.Now;
         this.wypozyczenie_limit = limit;
+        overdue = false;
     }
 
     public bool is_active()
@@ -31,6 +33,7 @@ public class Wypozyczenie
     public int zwrot()
     {
         data_oddania = DateTime.Now;
+        aktywne = false;
         int do_zaplacenia = kara();
         return do_zaplacenia;
     }
@@ -38,8 +41,16 @@ public class Wypozyczenie
     public int kara()
     {
         if (data_oddania > wypozyczenie_limit)
+        {
+            overdue = true;
             return ((data_oddania - wypozyczenie_limit).Days * 100);
+        }
 
         return 0;
+    }
+
+    public bool is_overdue()
+    {
+        return overdue;
     }
 }
