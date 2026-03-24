@@ -1,3 +1,4 @@
+using uczelniana_wypozyczalnia.Domain;
 using uczelniana_wypozyczalnia.Domain.Equipment;
 using uczelniana_wypozyczalnia.Domain.User;
 
@@ -66,7 +67,10 @@ public class Wypozyczalnia
             Console.WriteLine("sprzęt niedostępny");
             return false;
         }
-        
-        int ile_wypo = lista_wypozyczenia.Count(w => w.Uzytkownik.ID == id_u)
+
+        int ile_wypo = lista_wypozyczenia.Count(w => w.uzytkownik.ID == id_u && w.aktywne);
+
+
+        return false;
     }
 }
